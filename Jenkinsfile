@@ -17,9 +17,24 @@ pipeline {
                 sh 'node index.js'
             }
         }
-        stage('Test') {
+                stage('Test') {
             steps {
                 sh 'node test.js'
+            }
+        }
+        stage('Containerize') {
+            steps {
+                sh 'docker build -t jenkinsnodeappWdocker .'
+            }
+        }
+        stage('Run Container') {
+            steps {
+                sh 'docker run -d -p 3000:3000 --name jnawd jenkinsnodeappWdocker'
+            }
+        }
+        stage('Docker container logs') {
+            steps {
+                sh 'docker logs jnawd'
             }
         }
     }
