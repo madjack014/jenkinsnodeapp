@@ -24,12 +24,12 @@ pipeline {
         }
         stage('Containerize') {
             steps {
-                sh 'docker build -t jenkinsnodeappWdocker .'
+                sh 'docker build -t jenkinsnodeappwdocker .'   
             }
         }
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 3000:3000 --name jnawd jenkinsnodeappWdocker'
+                sh 'docker run -d -p 3000:3000 --name jnawd jenkinsnodeappwdocker'
             }
         }
         stage('Docker container logs') {
