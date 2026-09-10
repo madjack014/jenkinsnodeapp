@@ -3,9 +3,10 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/madjack014/jenkinsnodeapp.git'
+                git url: 'https://github.com/madjack014/jenkinsnodeapp.git',
+                branch: 'main'
             }
-        }
+        }   
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
