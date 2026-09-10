@@ -17,27 +17,28 @@ pipeline {
                 sh 'node index.js'
             }
         }
-                stage('Test') {
+        stage('Test') {
             steps {
                 sh 'node test.js'
             }
         }
         stage('Containerize') {
             steps {
-                sh 'docker build -t jenkinsnodeappwdocker .'   
+                sh 'docker build -t jenkinsnodeappwdocker .'
             }
-stage('Run Container') {
-    steps {
-        script {
-            env.CONTAINER_ID = sh(script: 'docker run -d -p 3000:3000 jenkinsnodeappwdocker', returnStdout: true).trim()
         }
-    }
-}
-stage('Docker container logs') {
-    steps {
-        sh "docker logs ${env.CONTAINER_ID}"
-    }
-}   
+        stage('Run Container') {
+            steps {
+                script {
+                    env.CONTAINER_ID = sh(script: 'docker run -d -p 3000:3000 jenkinsnodeappwdocker', returnStdout: true).trim()
+                }
+            }
+        }
+        stage('Docker container logs') {
+            steps {
+                sh "docker logs ${env.CONTAINER_ID}"
+            }
+        }
     }
     post {
         always {
