@@ -1,4 +1,4 @@
-const add = requuire("./index");
+const add = require("./index");
 
 if (add(20, 30) === 50) {
   console.log("the result is correct");
