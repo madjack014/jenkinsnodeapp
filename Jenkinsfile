@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Run Container') {
             steps {
-                sh 'docker run -d -p 3000:3000 --name jnawd jenkinsnodeappwdocker'
+                sh 'docker run -d -p 3000:3000 jenkinsnodeappwdocker'
             }
         }
         stage('Docker container logs') {
