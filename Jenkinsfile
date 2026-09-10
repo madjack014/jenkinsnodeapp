@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Docker container logs') {
             steps {
-                sh 'docker logs jnawd'
+                sh 'docker logs'
             }
         }
     }
