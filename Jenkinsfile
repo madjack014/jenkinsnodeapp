@@ -26,17 +26,18 @@ pipeline {
             steps {
                 sh 'docker build -t jenkinsnodeappwdocker .'   
             }
+stage('Run Container') {
+    steps {
+        script {
+            env.CONTAINER_ID = sh(script: 'docker run -d -p 3000:3000 jenkinsnodeappwdocker', returnStdout: true).trim()
         }
-        stage('Run Container') {
-            steps {
-                sh 'docker run -d -p 3000:3000 jenkinsnodeappwdocker'
-            }
-        }
-        stage('Docker container logs') {
-            steps {
-                sh 'docker logs'
-            }
-        }
+    }
+}
+stage('Docker container logs') {
+    steps {
+        sh "docker logs ${env.CONTAINER_ID}"
+    }
+}   
     }
     post {
         always {
